@@ -1,5 +1,7 @@
 # lich
 
+![ci](https://github.com/egilsster/lich-rs/workflows/ci/badge.svg?branch=main)
+
 **What is this?**
 
 A License checker?
