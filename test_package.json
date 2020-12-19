@@ -1,0 +1,40 @@
+{
+  "dependencies": {
+    "lodash": "^4.17.1",
+    "react": "17.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.1",
+    "@babel/eslint-parser": "^7.11.4",
+    "@babel/parser": "^7.11.3",
+    "@babel/plugin-external-helpers": "^7.10.4",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "babel-eslint": "^10.0.3",
+    "babel-plugin-syntax-trailing-function-commas": "^6.5.0",
+    "cli-table": "^0.3.1",
+    "core-js": "^3.6.4",
+    "danger": "^9.2.10",
+    "error-stack-parser": "^2.0.6",
+    "eslint": "^7.7.0",
+    "eslint-config-prettier": "^6.9.0",
+    "mkdirp": "^0.5.1",
+    "prettier": "1.19.1",
+    "random-seed": "^0.3.0",
+    "rimraf": "^3.0.0",
+    "rollup": "^1.19.4",
+    "semver": "^7.1.1",
+    "tmp": "^0.1.0",
+    "webpack": "^4.41.2",
+    "yargs": "^15.3.1"
+  },
+  "peerDependencies": {
+    "typescript": "^3.7.5"
+  },
+  "bundledDependencies": [
+    "react"
+  ],
+  "scripts": {
+    "test": "echo test"
+  }
+}
