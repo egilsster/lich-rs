@@ -4,7 +4,7 @@
 
 **What is this?**
 
-A License checker?
+A <b>Li</b>cense <b>ch</b>ecker
 
 **What is that?**
 
