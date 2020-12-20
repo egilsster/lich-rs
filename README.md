@@ -27,7 +27,8 @@ Fits perfectly in Github status check.
 ## Installing
 
 ```sh
-TBD
+brew tap egilsster/lich
+brew install lich
 ```
 
 ## Usage
