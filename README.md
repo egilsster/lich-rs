@@ -36,8 +36,10 @@ brew install lich
 `wget`
 
 ```sh
-λ TAG=v0.1.1 wget https://github.com/egilsster/lich-rs/releases/download/$TAG/lich-x86_64-apple-darwin.zip
-tar xf lich-x86_64-apple-darwin.zip -C /usr/local/bin
+λ TAG=v0.1.1 && wget https://github.com/egilsster/lich-rs/releases/download/$TAG/lich-x86_64-apple-darwin.zip
+λ tar xf lich-x86_64-apple-darwin.zip -C /usr/local/bin
+λ lich --version
+lich 0.1.1
 ```
 
 ## Usage
