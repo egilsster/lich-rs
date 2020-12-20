@@ -25,7 +25,7 @@ struct GithubRepoResponse {
     tree: Vec<TreeItem>,
 }
 
-const FILE_EXT: &'static str = ".toml";
+const FILE_EXT: &str = ".toml";
 
 pub async fn get_approved_dependencies(
     github_url: String,
