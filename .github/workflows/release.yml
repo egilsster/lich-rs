@@ -48,7 +48,7 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         if: |
-          github.repository == 'egilsster/lich' &&
+          github.repository == 'egilsster/lich-rs' &&
           startsWith(github.ref, 'refs/tags/')
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
