@@ -14,7 +14,6 @@ use std::process::exit;
 
 #[tokio::main]
 async fn main() -> Result<()> {
-    // let matches = cli::Lich::parse();
     let Lich {
         deps,
         owner,
