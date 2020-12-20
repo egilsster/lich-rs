@@ -28,8 +28,8 @@ struct GithubRepoResponse {
 const FILE_EXT: &'static str = ".toml";
 
 pub async fn get_approved_dependencies(
-    github_url: &str,
-    github_token: Option<&str>,
+    github_url: String,
+    github_token: Option<String>,
 ) -> Result<DependencyList> {
     let mut headers = HeaderMap::new();
     headers.insert("User-Agent", "github/egilsster/lich".parse()?);
@@ -39,7 +39,7 @@ pub async fn get_approved_dependencies(
 
     let req = reqwest::Client::new();
     let resp = req
-        .get(github_url)
+        .get(&github_url)
         .headers(headers)
         .send()
         .await

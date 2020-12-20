@@ -33,5 +33,17 @@ TBD
 ## Usage
 
 ```sh
-lich package.json --repo=approved-licenses --owner=egilsster --token $(GITHUB_TOKEN)
+λ lich --help
+lich 0.1.0
+Egill Sveinbjörnsson <egillsveinbjorns@gmail.com>
+Make sure your third party dependencies have been approved
+
+USAGE:
+    lich [OPTIONS] <DEPENDENCY FILE> --repo <REPO> --owner <OWNER>
+```
+
+Against a private repo using the `main` branch:
+
+```sh
+λ lich package.json --repo=approved-licenses --owner=egilsster --token $(GITHUB_TOKEN)
 ```
