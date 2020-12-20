@@ -46,5 +46,5 @@ USAGE:
 Against a private repo using the `main` branch:
 
 ```sh
-λ lich package.json --repo=approved-licenses --owner=egilsster --token $(GITHUB_TOKEN)
+λ lich package.json --repo=approved-licenses --owner=egilsster --token $GITHUB_TOKEN
 ```
