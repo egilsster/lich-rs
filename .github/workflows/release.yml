@@ -36,14 +36,20 @@ jobs:
           contains(matrix.os, 'ubuntu')
         run: |
           cd target/release
-          zip -r lich-x86_64-unknown-linux-gnu.zip lich
+          tar -czf $FILENAME lich
+          shasum -a 256 $FILENAME | awk '{print $1}' > $FILENAME-sha.txt
+        env:
+          FILENAME: lich-x86_64-unknown-linux-gnu.tar.gz
 
       - name: Pre-release (mac)
         if: |
           contains(matrix.os, 'macOS')
         run: |
           cd target/release
-          zip -r lich-x86_64-apple-darwin.zip lich
+          tar -czf $FILENAME lich
+          shasum -a 256 $FILENAME | awk '{print $1}' > $FILENAME-sha.txt
+        env:
+          FILENAME: lich-x86_64-apple-darwin.tar.gz
 
       - name: Release
         uses: softprops/action-gh-release@v1
@@ -54,6 +60,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           files: |
-            target/release/lich-x86_64-unknown-linux-gnu.zip
-            target/release/lich-x86_64-apple-darwin.zip
+            target/release/lich-x86_64-unknown-linux-gnu.tar.gz
+            target/release/lich-x86_64-unknown-linux-gnu.tar.gz-sha.txt
+            target/release/lich-x86_64-apple-darwin.tar.gz
+            target/release/lich-x86_64-apple-darwin.tar.gz-sha.txt
           draft: true
