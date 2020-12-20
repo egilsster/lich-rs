@@ -1,0 +1,59 @@
+name: release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  release:
+    name: lich-${{ matrix.os }}
+    if: |
+      github.event_name == 'push'
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macOS-latest, ubuntu-latest]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install stable toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+
+      - name: Build
+        run: cargo build --locked --release --all-targets
+
+      - name: Test
+        run: cargo test --locked --release --all-targets
+
+      - name: Pre-release (linux)
+        if: |
+          contains(matrix.os, 'ubuntu')
+        run: |
+          cd target/release
+          zip -r lich-x86_64-unknown-linux-gnu.zip lich
+
+      - name: Pre-release (mac)
+        if: |
+          contains(matrix.os, 'macOS')
+        run: |
+          cd target/release
+          zip -r lich-x86_64-apple-darwin.zip lich
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: |
+          github.repository == 'egilsster/lich' &&
+          startsWith(github.ref, 'refs/tags/')
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          files: |
+            target/release/lich-x86_64-unknown-linux-gnu.zip
+            target/release/lich-x86_64-apple-darwin.zip
+          draft: true
