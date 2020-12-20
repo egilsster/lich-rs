@@ -4,6 +4,9 @@ mod github;
 mod parser;
 mod types;
 
+use clap::Clap;
+
+use cli::Lich;
 use eyre::Result;
 use github::{get_approved_dependencies, get_project_api_url};
 use parser::Package;
@@ -11,17 +14,17 @@ use std::process::exit;
 
 #[tokio::main]
 async fn main() -> Result<()> {
-    let matches = cli::parse_parameters();
+    let Lich {
+        deps,
+        owner,
+        repo,
+        branch,
+        token,
+    } = cli::Lich::parse();
 
-    let dependency_file = matches.value_of("deps").unwrap();
-    let owner = matches.value_of("owner").unwrap();
-    let repo = matches.value_of("repo").unwrap();
-    let branch = matches.value_of("branch").unwrap();
-    let github_token = matches.value_of("token");
+    let github_url = get_project_api_url(&owner, &repo, &branch);
 
-    let github_url = get_project_api_url(owner, repo, branch);
-
-    println!("Parsing {}..", dependency_file);
+    println!("Parsing {}..", deps);
 
     let Package {
         mut dependencies,
@@ -29,7 +32,7 @@ async fn main() -> Result<()> {
         mut peer_dependencies,
         bundled_dependencies,
         ..
-    } = Package::from_path(dependency_file)?;
+    } = Package::from_path(deps)?;
 
     let mut all_dependencies = types::DependencySet::new();
 
@@ -45,7 +48,7 @@ async fn main() -> Result<()> {
 
     println!("Get allowed dependencies..");
 
-    let allowed_dependencies = get_approved_dependencies(&github_url, github_token).await?;
+    let allowed_dependencies = get_approved_dependencies(github_url, token).await?;
 
     println!("Checking dependencies..\n");
     let results = compare::compare_licenses(all_dependencies, allowed_dependencies);
