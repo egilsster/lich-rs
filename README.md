@@ -26,21 +26,24 @@ Fits perfectly in Github status check.
 
 ## Installing
 
+Homebrew
+
 ```sh
 brew tap egilsster/lich
 brew install lich
 ```
 
+`wget`
+
+```sh
+λ TAG=v0.1.1 wget https://github.com/egilsster/lich-rs/releases/download/$TAG/lich-x86_64-apple-darwin.zip
+tar xf lich-x86_64-apple-darwin.zip -C /usr/local/bin
+```
+
 ## Usage
 
 ```sh
-λ lich --help
-lich 0.1.0
-Egill Sveinbjörnsson <egillsveinbjorns@gmail.com>
-Make sure your third party dependencies have been approved
-
-USAGE:
-    lich [OPTIONS] <DEPENDENCY FILE> --repo <REPO> --owner <OWNER>
+λ lich <DEPENDENCY FILE> --repo <REPO> --owner <OWNER> [--token <TOKEN>]
 ```
 
 Against a private repo using the `main` branch:
