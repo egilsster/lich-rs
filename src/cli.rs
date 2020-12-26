@@ -6,7 +6,7 @@ const NAME: &str = env!("CARGO_PKG_NAME");
 /// Make sure your third party dependencies have been approved.
 #[derive(Clap)]
 #[clap(name = NAME, version = VERSION, author = "Egill Sveinbjörnsson <egillsveinbjorns@gmail.com>")]
-pub struct Lich {
+pub struct CliArgs {
     /// Path to the package dependency manifest file
     #[clap(value_name = "DEPENDENCY FILE", required = true)]
     pub deps: String,

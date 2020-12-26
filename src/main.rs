@@ -5,8 +5,7 @@ mod parser;
 mod types;
 
 use clap::Clap;
-
-use cli::Lich;
+use cli::CliArgs;
 use eyre::Result;
 use github::{get_approved_dependencies, get_project_api_url};
 use parser::Package;
@@ -14,13 +13,13 @@ use std::process::exit;
 
 #[tokio::main]
 async fn main() -> Result<()> {
-    let Lich {
+    let CliArgs {
         deps,
         owner,
         repo,
         branch,
         token,
-    } = cli::Lich::parse();
+    } = cli::CliArgs::parse();
 
     let github_url = get_project_api_url(&owner, &repo, &branch);
 
