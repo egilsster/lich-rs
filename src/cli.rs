@@ -1,10 +1,10 @@
-use clap::Clap;
+use clap::Parser;
 
 const VERSION: &str = env!("CARGO_PKG_VERSION");
 const NAME: &str = env!("CARGO_PKG_NAME");
 
 /// Make sure your third party dependencies have been approved.
-#[derive(Clap)]
+#[derive(Parser)]
 #[clap(name = NAME, version = VERSION)]
 pub struct CliArgs {
     /// Path to the package dependency manifest file

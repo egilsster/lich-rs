@@ -4,7 +4,7 @@ mod github;
 mod parser;
 mod types;
 
-use clap::Clap;
+use clap::Parser;
 use cli::CliArgs;
 use eyre::Result;
 use github::{get_approved_dependencies, get_project_api_url};
